@@ -33,6 +33,7 @@
 			this.lblCashback = new System.Windows.Forms.Label();
 			this.lblSpendings = new System.Windows.Forms.Label();
 			this.btnLoad = new System.Windows.Forms.Button();
+			this.lblSelectedSpending = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
 			this.panel1.SuspendLayout();
 			this.SuspendLayout();
@@ -44,11 +45,15 @@
 			this.dataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.dataGridView.Location = new System.Drawing.Point(0, 31);
 			this.dataGridView.Name = "dataGridView";
+			this.dataGridView.ReadOnly = true;
+			this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.dataGridView.Size = new System.Drawing.Size(800, 419);
 			this.dataGridView.TabIndex = 0;
+			this.dataGridView.SelectionChanged += new System.EventHandler(this.dataGridView_SelectionChanged);
 			// 
 			// panel1
 			// 
+			this.panel1.Controls.Add(this.lblSelectedSpending);
 			this.panel1.Controls.Add(this.lblCashback);
 			this.panel1.Controls.Add(this.lblSpendings);
 			this.panel1.Controls.Add(this.btnLoad);
@@ -86,6 +91,15 @@
 			this.btnLoad.UseVisualStyleBackColor = true;
 			this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
 			// 
+			// lblSelectedSpending
+			// 
+			this.lblSelectedSpending.AutoSize = true;
+			this.lblSelectedSpending.Location = new System.Drawing.Point(410, 9);
+			this.lblSelectedSpending.Name = "lblSelectedSpending";
+			this.lblSelectedSpending.Size = new System.Drawing.Size(89, 13);
+			this.lblSelectedSpending.TabIndex = 3;
+			this.lblSelectedSpending.Text = "Выбрано затрат";
+			// 
 			// SpendingForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -109,6 +123,7 @@
 		private System.Windows.Forms.Button btnLoad;
 		private System.Windows.Forms.Label lblSpendings;
 		private System.Windows.Forms.Label lblCashback;
+		private System.Windows.Forms.Label lblSelectedSpending;
 	}
 }
 

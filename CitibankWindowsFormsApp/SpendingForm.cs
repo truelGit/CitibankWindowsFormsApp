@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security;
 using System.Windows.Forms;
 using CitibankWindowsFormsApp.Models;
+using CitibankWindowsFormsApp.Properties;
 
 namespace CitibankWindowsFormsApp
 {
@@ -44,8 +45,8 @@ namespace CitibankWindowsFormsApp
 						var sum = spendingList.Where(s => s.Value < 0).Sum(s => s.Value);
 						var cacheBack = spendingList.Where(s => s.Value > 0 && s.Shop != "ПЕРЕВОД ИЗ ДРУГОГО БАНКА").Sum(s => s.Value);
 
-						lblSpendings.Text = $"Итого затрат: {sum}";
-						lblCashback.Text = $"Итого кешбека {cacheBack}";
+						lblSpendings.Text = string.Format(Resources.SpendingForm_btnLoad_Click_Итого_затрат___0_, sum);
+						lblCashback.Text = string.Format(Resources.SpendingForm_btnLoad_Click_Итого_кешбека__0_, cacheBack);
 					}
 				}
 				catch (SecurityException ex)
@@ -53,6 +54,17 @@ namespace CitibankWindowsFormsApp
 					MessageBox.Show(ex.Message);
 				}
 			}
+		}
+
+		private void dataGridView_SelectionChanged(object sender, EventArgs e)
+		{
+			var selectedSum = dataGridView.SelectedRows
+				.Cast<DataGridViewRow>()
+				.Select(r => (decimal)r.Cells["Value"].Value)
+				.Where(v => v < 0)
+				.Sum();
+
+			lblSelectedSpending.Text = string.Format(Resources.SpendingForm_dataGridView_SelectionChanged_Выбрано_затрат__0_, selectedSum);
 		}
 	}
 }
