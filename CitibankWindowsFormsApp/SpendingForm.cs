@@ -6,6 +6,7 @@ using System.Security;
 using System.Windows.Forms;
 using CitibankWindowsFormsApp.Models;
 using CitibankWindowsFormsApp.Properties;
+using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 
 namespace CitibankWindowsFormsApp
 {
@@ -39,11 +40,13 @@ namespace CitibankWindowsFormsApp
 							spendingList.Add(spending);
 						}
 
-						var source = new BindingSource {DataSource = spendingList};
-						dataGridView.DataSource = source;
+						dataGridView.DataSource = new SortableBindingList<Spending>(spendingList);
 
 						var sum = spendingList.Where(s => s.Value < 0).Sum(s => s.Value);
 						var cacheBack = spendingList.Where(s => s.Value > 0 && s.Shop != "ПЕРЕВОД ИЗ ДРУГОГО БАНКА").Sum(s => s.Value);
+
+						foreach (DataGridViewColumn column in dataGridView.Columns)
+							column.SortMode = DataGridViewColumnSortMode.Automatic;
 
 						lblSpendings.Text = string.Format(Resources.SpendingForm_btnLoad_Click_Итого_затрат___0_, sum);
 						lblCashback.Text = string.Format(Resources.SpendingForm_btnLoad_Click_Итого_кешбека__0_, cacheBack);

@@ -30,16 +30,17 @@
 		{
 			this.dataGridView = new System.Windows.Forms.DataGridView();
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.lblSelectedSpending = new System.Windows.Forms.Label();
 			this.lblCashback = new System.Windows.Forms.Label();
 			this.lblSpendings = new System.Windows.Forms.Label();
 			this.btnLoad = new System.Windows.Forms.Button();
-			this.lblSelectedSpending = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
 			this.panel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// dataGridView
 			// 
+			this.dataGridView.AllowUserToOrderColumns = true;
 			this.dataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
 			this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -62,6 +63,15 @@
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(800, 31);
 			this.panel1.TabIndex = 1;
+			// 
+			// lblSelectedSpending
+			// 
+			this.lblSelectedSpending.AutoSize = true;
+			this.lblSelectedSpending.Location = new System.Drawing.Point(410, 9);
+			this.lblSelectedSpending.Name = "lblSelectedSpending";
+			this.lblSelectedSpending.Size = new System.Drawing.Size(89, 13);
+			this.lblSelectedSpending.TabIndex = 3;
+			this.lblSelectedSpending.Text = "Выбрано затрат";
 			// 
 			// lblCashback
 			// 
@@ -90,15 +100,6 @@
 			this.btnLoad.Text = "Load";
 			this.btnLoad.UseVisualStyleBackColor = true;
 			this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
-			// 
-			// lblSelectedSpending
-			// 
-			this.lblSelectedSpending.AutoSize = true;
-			this.lblSelectedSpending.Location = new System.Drawing.Point(410, 9);
-			this.lblSelectedSpending.Name = "lblSelectedSpending";
-			this.lblSelectedSpending.Size = new System.Drawing.Size(89, 13);
-			this.lblSelectedSpending.TabIndex = 3;
-			this.lblSelectedSpending.Text = "Выбрано затрат";
 			// 
 			// SpendingForm
 			// 
