@@ -42,14 +42,18 @@ namespace CitibankWindowsFormsApp
 
 						dataGridView.DataSource = new SortableBindingList<Spending>(spendingList);
 
-						var sum = spendingList.Where(s => s.Value < 0).Sum(s => s.Value);
-						var cacheBack = spendingList.Where(s => s.Value > 0 && s.Shop != "ПЕРЕВОД ИЗ ДРУГОГО БАНКА").Sum(s => s.Value);
-
 						foreach (DataGridViewColumn column in dataGridView.Columns)
 							column.SortMode = DataGridViewColumnSortMode.Automatic;
 
-						lblSpendings.Text = string.Format(Resources.SpendingForm_btnLoad_Click_Итого_затрат___0_, sum);
-						lblCashback.Text = string.Format(Resources.SpendingForm_btnLoad_Click_Итого_кешбека__0_, cacheBack);
+						dataGridView_OnLoad(lblSpendings,
+							spendingList, 
+							s => s.Value < 0, 
+							Resources.SpendingForm_btnLoad_Click_Итого_затрат___0_);
+
+						dataGridView_OnLoad(lblCashback,
+							spendingList,
+							s => s.Value > 0 && s.Shop != "ПЕРЕВОД ИЗ ДРУГОГО БАНКА",
+							Resources.SpendingForm_btnLoad_Click_Итого_кешбека__0_);
 					}
 				}
 				catch (SecurityException ex)
@@ -59,15 +63,27 @@ namespace CitibankWindowsFormsApp
 			}
 		}
 
+		private void dataGridView_OnLoad(Label label, List<Spending> spendingList, Func<Spending, bool> func, string format)
+		{
+			var sum = spendingList.Where(func).Sum(s => s.Value);
+			label.Text = string.Format(format, sum);
+		}
+
 		private void dataGridView_SelectionChanged(object sender, EventArgs e)
 		{
-			var selectedSum = dataGridView.SelectedRows
+			updateLabelsOnSelection(lblSelectedCashback, v => v < 0, Resources.SpendingForm_dataGridView_SelectionChanged_Выбрано_затрат__0_);
+			updateLabelsOnSelection(lblSelectedCashback, v => v > 0, Resources.SpendingForm_dataGridView_SelectionChanged_Выбрано_кешбека);
+		}
+
+		private void updateLabelsOnSelection(Label label, Func<decimal, bool> func, string format)
+		{
+			var sum = dataGridView.SelectedRows
 				.Cast<DataGridViewRow>()
 				.Select(r => (decimal)r.Cells["Value"].Value)
-				.Where(v => v < 0)
+				.Where(func)
 				.Sum();
 
-			lblSelectedSpending.Text = string.Format(Resources.SpendingForm_dataGridView_SelectionChanged_Выбрано_затрат__0_, selectedSum);
+			label.Text = string.Format(format, sum);
 		}
 	}
 }

@@ -34,6 +34,7 @@
 			this.lblCashback = new System.Windows.Forms.Label();
 			this.lblSpendings = new System.Windows.Forms.Label();
 			this.btnLoad = new System.Windows.Forms.Button();
+			this.lblSelectedCashback = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
 			this.panel1.SuspendLayout();
 			this.SuspendLayout();
@@ -54,6 +55,7 @@
 			// 
 			// panel1
 			// 
+			this.panel1.Controls.Add(this.lblSelectedCashback);
 			this.panel1.Controls.Add(this.lblSelectedSpending);
 			this.panel1.Controls.Add(this.lblCashback);
 			this.panel1.Controls.Add(this.lblSpendings);
@@ -101,6 +103,15 @@
 			this.btnLoad.UseVisualStyleBackColor = true;
 			this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
 			// 
+			// lblSelectedCashback
+			// 
+			this.lblSelectedCashback.AutoSize = true;
+			this.lblSelectedCashback.Location = new System.Drawing.Point(564, 9);
+			this.lblSelectedCashback.Name = "lblSelectedCashback";
+			this.lblSelectedCashback.Size = new System.Drawing.Size(99, 13);
+			this.lblSelectedCashback.TabIndex = 4;
+			this.lblSelectedCashback.Text = "Выбрано кешбека";
+			// 
 			// SpendingForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -125,6 +136,7 @@
 		private System.Windows.Forms.Label lblSpendings;
 		private System.Windows.Forms.Label lblCashback;
 		private System.Windows.Forms.Label lblSelectedSpending;
+		private System.Windows.Forms.Label lblSelectedCashback;
 	}
 }
 
