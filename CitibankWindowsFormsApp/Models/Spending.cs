@@ -16,11 +16,11 @@ namespace CitibankWindowsFormsApp.Models
 			var tokens = line.Replace("\"", string.Empty).Split(',');
 			if (tokens.Length == 4)
 			{
-				Date = DateTime.Parse(tokens[0]);
+				Date = DateTime.Parse(tokens[0], new CultureInfo("ru-RU"));
 				Shop = tokens[1];
 				Value = decimal.Parse(tokens[2], CultureInfo.InvariantCulture);
 				Sum = (Value > 0)? sum : Value + sum;
 			}
 		}
-	}
+    }
 }
