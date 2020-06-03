@@ -71,7 +71,7 @@ namespace CitibankWindowsFormsApp
 
 		private void dataGridView_SelectionChanged(object sender, EventArgs e)
 		{
-			updateLabelsOnSelection(lblSelectedCashback, v => v < 0, Resources.SpendingForm_dataGridView_SelectionChanged_Выбрано_затрат__0_);
+			updateLabelsOnSelection(lblSelectedSpending, v => v < 0, Resources.SpendingForm_dataGridView_SelectionChanged_Выбрано_затрат__0_);
 			updateLabelsOnSelection(lblSelectedCashback, v => v > 0, Resources.SpendingForm_dataGridView_SelectionChanged_Выбрано_кешбека);
 		}
 
